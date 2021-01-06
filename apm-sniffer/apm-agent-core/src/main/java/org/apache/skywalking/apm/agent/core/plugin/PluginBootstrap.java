@@ -30,6 +30,8 @@ import org.apache.skywalking.apm.agent.core.logging.api.LogManager;
  * Plugins finder. Use {@link PluginResourcesResolver} to find all plugins, and ask {@link PluginCfg} to load all plugin
  * definitions.
  */
+
+// lsc插件引导程序类，创建需要加载的插件对象数组
 public class PluginBootstrap {
     private static final ILog LOGGER = LogManager.getLogger(PluginBootstrap.class);
 
@@ -39,6 +41,8 @@ public class PluginBootstrap {
      * @return plugin definition list.
      */
     public List<AbstractClassEnhancePluginDefine> loadPlugins() throws AgentPackageNotFoundException {
+
+        // lsc初始化AgentClassLoader
         AgentClassLoader.initDefaultLoader();
 
         PluginResourcesResolver resolver = new PluginResourcesResolver();
@@ -57,8 +61,10 @@ public class PluginBootstrap {
             }
         }
 
+        // lsc获得插件定义数组
         List<PluginDefine> pluginClassList = PluginCfg.INSTANCE.getPluginClassList();
 
+        // lsc获得类增强插件定义对象数组，不同插件通过实现 AbstractClassEnhancePluginDefine 抽象类，定义不同框架的切面，记录调用链路。
         List<AbstractClassEnhancePluginDefine> plugins = new ArrayList<AbstractClassEnhancePluginDefine>();
         for (PluginDefine pluginDefine : pluginClassList) {
             try {

@@ -33,6 +33,8 @@ import org.apache.skywalking.apm.util.Length;
 /**
  * This is the core config in sniffer agent.
  */
+
+//lsc Config 为 Agent 本地配置类，使用 SnifferConfigInitializer 进行初始化。
 public class Config {
 
     public static class Agent {
