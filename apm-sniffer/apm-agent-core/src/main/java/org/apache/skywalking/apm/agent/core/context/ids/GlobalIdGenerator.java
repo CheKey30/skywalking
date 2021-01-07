@@ -21,7 +21,7 @@ package org.apache.skywalking.apm.agent.core.context.ids;
 import java.util.Random;
 import java.util.UUID;
 import org.apache.skywalking.apm.util.StringUtil;
-
+// lsc 全局唯一编号生成器
 public final class GlobalIdGenerator {
     private static final String PROCESS_ID = UUID.randomUUID().toString().replaceAll("-", "");
     private static final ThreadLocal<IDContext> THREAD_ID_SEQUENCE = ThreadLocal.withInitial(
